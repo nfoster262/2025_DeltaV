@@ -27,8 +27,10 @@ import frc.robot.subsystems.drive.odometry_threads.PhoenixOdometryThread;
 import frc.robot.subsystems.vision.Vision;
 import frc.robot.subsystems.vision.VisionConstants;
 import frc.robot.subsystems.vision.VisionIO;
-import frc.robot.subsystems.vision.VisionIOPhotonVision;
 import frc.robot.subsystems.vision.VisionIOPhotonVisionSim;
+import frc.robot.subsystems.vision.VisionIOPhotonVisionTrig;
+import frc.robot.subsystems.vision.VisionIOQuestNavNew;
+
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -87,8 +89,10 @@ public class RobotContainer {
         vision =
             new Vision(
                 drive::addVisionMeasurement,
-                new VisionIOPhotonVision(
-                    VisionConstants.camera0Name, VisionConstants.robotToCamera0));
+                new VisionIOQuestNavNew(VisionConstants.robotToCamera0,
+                new VisionIOPhotonVisionTrig(VisionConstants.camera1Name,
+                VisionConstants.robotToCamera1,
+                drive::getRotation)));
         break;
 
       case SIM:
